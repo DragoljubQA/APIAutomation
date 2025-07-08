@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static BookingPOJO.PojoClasses.CreateBooking.payload;
 import static io.restassured.RestAssured.*;
 
 public class BookingPojoTest {
@@ -109,13 +110,13 @@ public class BookingPojoTest {
 
         JsonPath js = new JsonPath(response);
         Assert.assertFalse(js.getString("bookingid").isEmpty());
-        /*Assert.assertEquals(js.getString("booking.firstname"), createBooking.getFirstname());
-        Assert.assertEquals(js.getString("booking.lastname"), createBooking.getLastname());
-        Assert.assertEquals(js.getInt("booking.totalprice"), createBooking.getTotalprice());
-        Assert.assertEquals(js.getBoolean("booking.depositpaid"), createBooking.isDepositpaid());
-        Assert.assertEquals(js.getString("booking.bookingdates.checkin"), bookingDates.getCheckin());
-        Assert.assertEquals(js.getString("booking.bookingdates.checkout"), bookingDates.getCheckout());
-        Assert.assertEquals(js.getString("booking.additionalneeds"), createBooking.getAdditionalneeds());*/
+        Assert.assertEquals(js.getString("booking.firstname"), payload.getFirstname());
+        Assert.assertEquals(js.getString("booking.lastname"), payload.getLastname());
+        Assert.assertEquals(js.getInt("booking.totalprice"), payload.getTotalprice());
+        Assert.assertEquals(js.getBoolean("booking.depositpaid"), payload.isDepositpaid());
+        Assert.assertEquals(js.getString("booking.bookingdates.checkin"), CreateBooking.bookingDates.getCheckin());
+        Assert.assertEquals(js.getString("booking.bookingdates.checkout"), CreateBooking.bookingDates.getCheckout());
+        Assert.assertEquals(js.getString("booking.additionalneeds"), payload.getAdditionalneeds());
     }
 
     @Test
