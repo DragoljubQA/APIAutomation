@@ -12,11 +12,11 @@ public class CreateBooking {
     private String additionalneeds;
     static Faker faker = new Faker();
     public static CreateBooking payload;
-    public static BookingDates bookingDates = new BookingDates();
+    public static BookingDates bookingDates;
 
     public static Object setRandomPayload() {
         payload = new CreateBooking();
-
+        bookingDates = new BookingDates();
         String checkinMonth = String.valueOf(faker.number().numberBetween(01,12));
         String checkinDay = String.valueOf(faker.number().numberBetween(01,30));
         String year = String.valueOf(faker.number().numberBetween(2025,2035));
